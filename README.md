@@ -45,3 +45,18 @@ Multiple Consumer Groups
 - A bridge service forwards MQTT messages into Kafka
 - Kafka distributes events to multiple consumer groups independently
 
+## Scalability & Load Assumptions
+
+The system is designed to scale independently at each layer:
+
+- MQTT brokers can handle thousands of concurrent lightweight device connections
+- Kafka supports high-throughput ingestion using partitioned logs
+- Consumer groups allow multiple downstream applications to process the same data independently
+
+For simulation, the following assumptions are used:
+- Average message size: ~1 KB
+- Publish rate: ~1 message per second per device
+
+Under these assumptions, hundreds of concurrent clients introduce negligible load on
+modern hardware. Kafka provides buffering and backpressure handling during spikes,
+preventing data loss while allowing latency to increase gracefully.
