@@ -60,3 +60,14 @@ For simulation, the following assumptions are used:
 Under these assumptions, hundreds of concurrent clients introduce negligible load on
 modern hardware. Kafka provides buffering and backpressure handling during spikes,
 preventing data loss while allowing latency to increase gracefully.
+
+## Failure Handling & Reliability
+
+The architecture is resilient to common failure scenarios:
+
+- If a consumer crashes, Kafka retains data and allows replay from committed offsets
+- Consumer groups ensure failures in one consumer do not affect others
+- Kafka applies backpressure during producer spikes instead of dropping messages
+- Producers and consumers remain decoupled, avoiding cascading failures
+
+This design aligns with enterprise reliability and fault-isolation principles.
