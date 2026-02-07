@@ -70,4 +70,21 @@ The architecture is resilient to common failure scenarios:
 - Kafka applies backpressure during producer spikes instead of dropping messages
 - Producers and consumers remain decoupled, avoiding cascading failures
 
+## How to Run (Quickstart)
+
+This project simulates an end-to-end IoT event ingestion pipeline using MQTT and Apache Kafka.
+
+### Prerequisites
+- Ubuntu / Linux environment
+- Python 3.8+
+- Apache Kafka (KRaft mode)
+- Mosquitto MQTT broker
+
+### 1. Start Kafka
+Ensure Kafka is running locally and listening on port `9092`.
+
+```bash
+bin/kafka-server-start.sh config/kraft/server.properties
+
+
 This design aligns with enterprise reliability and fault-isolation principles.
